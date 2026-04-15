@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Submit</title>
+</head>
+<body>
+  <h2>Enter a number</h2>
+  <input id="num" type="number" />
+  <button onclick="send()">Confirm</button>
+  <p id="msg"></p>
+  <script>
+    async function send() {
+      const number = document.getElementById("num").value;
+
+      await fetch("/api/send-number", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ number })
+      });
+
+      document.getElementById("msg").innerText =
+        "Submitted successfully";
+    }
+  </script>
+</body>
+</html>
